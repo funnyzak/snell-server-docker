@@ -33,6 +33,6 @@ services:
 
 ---
 
-## LINK
+## Link
 
 * https://github.com/surge-networks/snell
