@@ -1,17 +1,22 @@
 FROM funnyzak/alpine-glibc
 
 ARG SNELL_SERVER_VERSION=v2.0.1
+ARG BUILD_DATE
+ARG SNELL_SERVER_PACKAGE=https://github.com/surge-networks/snell/releases/download/${SNELL_SERVER_VERSION}/snell-server-${SNELL_SERVER_VERSION}-linux-amd64.zip
 
-LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
+RUN BUILD_DATE=date
+
+LABEL org.label-schema.vendor="funnyzak<silenceace@gmail.com>" \
     org.label-schema.name="Snell Server" \
     org.label-schema.description="This image is based on Alpine Linux image, which is only a 9MB image, and contains Snell Server." \
+    org.label-schema.build-date="${BUILD_DATE}" \
     org.label-schema.url="https://yycc.me" \
-    org.label-schema.version="$SNELL_SERVER_VERSION" \
+    org.label-schema.version="${SNELL_SERVER_VERSION}" \
+    org.label-schema.schema-version="1.0"	\
+    org.label-schema.docker.cmd="docker run -d --name snell-server --restart always -p 1002:12345 -e PSK=\"5G0H4qdf32mEZx32t\" -e OBFS=\"tls\" funnyzak/snell-server" \
     org.label-schema.vcs-type="Git" \
     org.label-schema.vcs-url="https://github.com/funnyzak/snell-server-docker" 
 
-
-ARG SNELL_SERVER_PACKAGE=https://github.com/surge-networks/snell/releases/download/${SNELL_SERVER_VERSION}/snell-server-${SNELL_SERVER_VERSION}-linux-amd64.zip
 
 ENV LANG=C.UTF-8
 ENV PORT=12345
