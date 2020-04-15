@@ -15,6 +15,14 @@ Docker Pull Command: `docker pull funnyzak/snell-server`
 
 ---
 
+## Display Conf
+
+```sh
+docker exec snell-server cat /etc/snell/snell-server.conf
+```
+
+---
+
 ## Usage Example
 
 Here is an example configuration of Docker and Docker Compse.
@@ -22,7 +30,8 @@ Here is an example configuration of Docker and Docker Compse.
 ### Docker Run
 
 ```Docker
-docker run -d --name snell-servfer -p 1002:12345 -e PSK="5G0H4qdf32mEZx32t" -e OBFS="tls" funnyzak/snell-server
+docker run -d --name snell-server --restart always \
+-p 1002:12345 -e PSK="5G0H4qdf32mEZx32t" -e OBFS="tls" funnyzak/snell-server
 ```
 
 ### Docker-Compose
