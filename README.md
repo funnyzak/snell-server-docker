@@ -1,13 +1,31 @@
 # Snell Server Docker
 
-## [Docker hub image: funnyzak/snell-server](https://hub.docker.com/r/funnyzak/snell-server)
+[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 
+This image is based on Alpine Linux image, which is only a 9MB image, and contains Snell Server.
 
-### Pull Command: `docker pull funnyzak/snell-server`
+Download size of this image is only:
+
+[![](https://images.microbadger.com/badges/image/funnyzak/snell-server.svg)](http://microbadger.com/images/funnyzak/snell-server "Get your own image badge on microbadger.com")
+
+[Docker hub image: funnyzak/snell-server](https://hub.docker.com/r/funnyzak/snell-server)
+
+Docker Pull Command: `docker pull funnyzak/snell-server`
 
 ---
 
-## Docker Compose
+## Usage Example
+
+Here is an example configuration of Docker and Docker Compse.
+
+### Docker Run
+
+```Docker
+docker run -d --name snell-servfer -p 1002:12345 -e PSK="5G0H4qdf32mEZx32t" -e OBFS="tls" funnyzak/snell-server
+```
+
+### Docker-Compose
 
 ```docker
 version: '3'
@@ -20,19 +38,18 @@ services:
       options:
         max-size: "1g"
     environment:
-      PORT: 1002
       PSK: 5G0H4qdf32mEZx32t
       OBFS: tls
     tty: true
     restart: always
     ports:
-      - 1002:1002
+      - 1002:12345
     volumes:
       - ./conf:/etc/snell
 ```
 
 ---
 
-## Link
+## Related
 
 * https://github.com/surge-networks/snell
