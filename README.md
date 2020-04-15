@@ -1,6 +1,6 @@
 # Snell Server Docker
 
-## [Docker hub image: funnyzak/alpine-glibc](https://hub.docker.com/r/funnyzak/snell-server)
+## [Docker hub image: funnyzak/snell-server](https://hub.docker.com/r/funnyzak/snell-server)
 
 
 ### Pull Command: `docker pull funnyzak/snell-server`
