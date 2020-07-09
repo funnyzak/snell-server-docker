@@ -2,7 +2,7 @@ FROM funnyzak/alpine-glibc
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG SNELL_SERVER_VERSION=v2.0.1
+ARG SNELL_SERVER_VERSION=v2.0.3
 
 LABEL org.label-schema.vendor="funnyzak<silenceace@gmail.com>" \
     org.label-schema.name="Snell Server" \

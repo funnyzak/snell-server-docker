@@ -3,7 +3,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 
-This image is based on Alpine Linux image, which is only a 9MB image, and contains Snell Server.
+This image is based on Alpine Linux image, which is only a 9MB image, and contains Snell Server(v2.0.3).
 
 Download size of this image is only:
 
@@ -34,7 +34,7 @@ docker run -d --name snell-server --restart always \
 -p 1002:12345 -e PSK="5G0H4qdf32mEZx32t" -e OBFS="tls" funnyzak/snell-server
 ```
 
-### Docker-Compose
+### Compose
 
 ```docker
 version: '3'
