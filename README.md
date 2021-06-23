@@ -3,7 +3,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 
-This image is based on Alpine Linux image, which is only a 9MB image, and contains Snell Server (**v2.0.3**).
+This image is based on Alpine Linux image, which is only a 9MB image, and contains Snell Server (**v2.0.4**).
 
 Download size of this image is only:
 
