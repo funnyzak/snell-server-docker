@@ -2,7 +2,7 @@ FROM funnyzak/alpine-glibc
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG SNELL_SERVER_VERSION=v2.0.4
+ARG SNELL_SERVER_VERSION=v2.0.5
 
 LABEL org.label-schema.vendor="funnyzak<silenceace@gmail.com>" \
     org.label-schema.name="Snell Server" \
@@ -24,7 +24,9 @@ ENV OBFS=tls
 
 COPY entrypoint.sh /usr/bin/
 
-ARG SNELL_SERVER_PACKAGE=https://github.com/surge-networks/snell/releases/download/${SNELL_SERVER_VERSION}/snell-server-${SNELL_SERVER_VERSION}-linux-amd64.zip
+# ARG SNELL_SERVER_PACKAGE=https://github.com/surge-networks/snell/releases/download/${SNELL_SERVER_VERSION}/snell-server-${SNELL_SERVER_VERSION}-linux-amd64.zip
+
+ARG SNELL_SERVER_PACKAGE=https://github.com/surge-networks/snell/releases/download/2.0.5b3/snell-server-v2.0.5-linux-amd64.zip
 
 RUN wget --no-check-certificate -O snell.zip $SNELL_SERVER_PACKAGE && \
     unzip snell.zip && \
