@@ -7,7 +7,7 @@ This image is based on Alpine Linux image, which is only a 9MB image, and contai
 
 Download size of this image is only:
 
-[![](https://images.microbadger.com/badges/image/funnyzak/snell-server.svg)](http://microbadger.com/images/funnyzak/snell-server "Get your own image badge on microbadger.com")
+[![Image Size](https://img.shields.io/docker/image-size/funnyzak/snell-server)](https://hub.docker.com/r/funnyzak/alpine-cron/)
 
 [Docker hub image: funnyzak/snell-server](https://hub.docker.com/r/funnyzak/snell-server)
 
