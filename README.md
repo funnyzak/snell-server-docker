@@ -7,7 +7,7 @@ This image is based on Alpine Linux image, which is only a 9MB image, and contai
 
 Download size of this image is only:
 
-[![Image Size](https://img.shields.io/docker/image-size/funnyzak/snell-server)](https://hub.docker.com/r/funnyzak/alpine-cron/)
+[![Image Size](https://img.shields.io/docker/image-size/funnyzak/snell-server)](https://hub.docker.com/r/funnyzak/snell-server/)
 
 [Docker hub image: funnyzak/snell-server](https://hub.docker.com/r/funnyzak/snell-server)
 
