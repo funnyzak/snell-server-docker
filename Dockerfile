@@ -13,6 +13,14 @@ RUN case "${TARGETPLATFORM}" in \
     *) echo "unsupported platform: ${TARGETPLATFORM}"; exit 1 ;; \
     esac
 
+# install glibc
+RUN apk add --no-cache --virtual .build-deps curl binutils zstd && \
+    GLIBC_VER="2.33-r0" && \
+    rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/* && \
+    rm -rf /var/log/*
+
+
 COPY entrypoint.sh /usr/bin/
 
 RUN unzip snell.zip && \
