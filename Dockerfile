@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM alpine:3.19.0
+FROM --platform=$BUILDPLATFORM funnyzak/alpine-glibc
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -12,14 +12,6 @@ RUN case "${TARGETPLATFORM}" in \
     "linux/arm/v7") wget --no-check-certificate -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${SNELL_SERVER_VERSION}-linux-armv7l.zip" ;; \
     *) echo "unsupported platform: ${TARGETPLATFORM}"; exit 1 ;; \
     esac
-
-# install glibc
-RUN apk add --no-cache --virtual .build-deps curl binutils zstd && \
-    GLIBC_VER="2.33-r0" && \
-    rm -rf /var/cache/apk/* && \
-    rm -rf /tmp/* && \
-    rm -rf /var/log/*
-
 
 COPY entrypoint.sh /usr/bin/
 
