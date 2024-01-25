@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM alpine:3.19.0
+FROM --platform=$BUILDPLATFORM jeanblanchard/alpine-glibc:latest
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -20,6 +20,7 @@ RUN unzip snell.zip && \
     chmod +x /usr/bin/entrypoint.sh
 
 ENV LANG=C.UTF-8
+ENV TZ=Asia/Shanghai
 
 ENV SNELL_SERVER_VERSION=${SNELL_SERVER_VERSION}
 ENV PORT=6180
