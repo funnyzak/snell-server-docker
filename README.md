@@ -3,7 +3,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 
-This image is based on Alpine Linux image, which is only a 9MB image, and contains Snell Server (**v3.0.1**).
+This image is based on Alpine Linux image, and contains Snell Server.
 
 Download size of this image is only:
 
@@ -36,7 +36,7 @@ docker run -d --name snell-server --restart always \
 
 ### Compose
 
-```docker
+```compose
 version: '3'
 services:
   server:
@@ -56,8 +56,11 @@ services:
     volumes:
       - ./conf:/etc/snell
 ```
----
 
 ## Related Link
 
-* https://github.com/surge-networks/snell
+- [Snell Server](https://manual.nssurge.com/others/snell.html)
+
+## License
+
+[MIT](LICENSE)
