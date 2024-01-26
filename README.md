@@ -42,7 +42,7 @@ Or you can use docker-compose to run this image:
 ```yaml
 version: '3'
 services:
-  server:
+  snell:
     image: funnyzak/snell-server
     container_name: snell-server
     environment:
