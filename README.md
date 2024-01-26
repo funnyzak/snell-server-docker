@@ -14,8 +14,6 @@ This Image supports the following architectures:
 
 Pull Command: `docker pull funnyzak/snell-server:latest`
 
-Note: The default port is 6180, which is different from the previous version.
-
 > The latest surge-server version is v4, which is not compatible with the previous versions like before. Please upgrade both the client (Surge iOS & Surge Mac) and the server binary.
 
 ## Docker Run
