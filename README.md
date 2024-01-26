@@ -1,20 +1,20 @@
 # Snell Server
 
+[![Build Status](https://github.com/funnyzak/snell-server-docker/actions/workflows/docker_build.yml/badge.svg)](https://github.com/funnyzak/react-native-v2ex/actions)
+[![Image Size](https://img.shields.io/docker/image-size/funnyzak/snell-server)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
-[![Image Size](https://img.shields.io/docker/image-size/funnyzak/snell-server)](https://hub.docker.com/r/funnyzak/snell-server/)
+[![Docker Tags](https://img.shields.io/docker/v/funnyzak/snell-server?sort=semver&style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 
- This image is built for [Snell Server](https://manual.nssurge.com/others/snell.html), which is a lean encrypted proxy protocol. If you want to use **Snell Client**, please download from [NSSurge](https://nssurge.com/).
+ This image is built for [snell server](https://manual.nssurge.com/others/snell.html), which is a lean encrypted proxy protocol. If you want to use **Snell Client**, please download from [NSSurge](https://nssurge.com/).
 
-This Image supports the following architectures:
-
-- `linux/amd64`
-- `linux/arm64`
-- `linux/arm/v7`
-
-Pull Command: `docker pull funnyzak/snell-server:latest`
+This image supports `linux/amd64`, `linux/arm64`, `linux/arm/v7` and `linux/386` architecture.
 
 > The latest surge-server version is v4, which is not compatible with the previous versions like before. Please upgrade both the client (Surge iOS & Surge Mac) and the server binary.
+
+## Docker Pull
+
+`docker pull funnyzak/snell-server:latest`
 
 ## Docker Run
 
