@@ -1,8 +1,10 @@
-FROM --platform=$BUILDPLATFORM jeanblanchard/alpine-glibc:latest
+FROM --platform=$BUILDPLATFORM alpine:3.19.0
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 ARG SNELL_SERVER_VERSION=4.0.1
+
+WORKDIR /app/
 
 RUN case "${TARGETPLATFORM}" in \
     "linux/amd64") wget --no-check-certificate -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${SNELL_SERVER_VERSION}-linux-amd64.zip" ;; \
@@ -11,20 +13,17 @@ RUN case "${TARGETPLATFORM}" in \
     *) echo "unsupported platform: ${TARGETPLATFORM}"; exit 1 ;; \
     esac
 
-COPY entrypoint.sh /usr/bin/
+COPY entrypoint.sh /app/
 
-RUN unzip snell.zip && \
-    rm -f snell.zip && \
+RUN if [ -f snell.zip ]; then unzip snell.zip && rm -f snell.zip; fi && \
     chmod +x snell-server && \
-    mv snell-server /usr/bin/ && \
-    chmod +x /usr/bin/entrypoint.sh
+    chmod +x entrypoint.sh
 
 ENV LANG=C.UTF-8
 ENV TZ=Asia/Shanghai
-
 ENV SNELL_SERVER_VERSION=${SNELL_SERVER_VERSION}
 ENV PORT=6180
 ENV IPV6=false
 ENV PSK=
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]

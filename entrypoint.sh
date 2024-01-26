@@ -1,34 +1,25 @@
 #!/bin/ash
 
-BIN="/usr/bin/snell-server"
-CONF="/etc/snell/snell-server.conf"
+BIN="/app/snell-server"
+CONF="/app/snell-server.conf"
 
 run() {
   if [ ! -f ${CONF} ]; then
-    if [ -z ${PSK} ]; then
-      PSK=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 31)
-      echo "Using generated PSK: ${PSK}"
-    else
-      echo "Using predefined PSK: ${PSK}"
-    fi
-    if [ -z ${PORT} ]; then
-      PORT=6180
-      echo "Using default port: ${PORT}"
-    else
-      echo "Using predefined port: ${PORT}"
-    fi
-    if [ -z ${IPV6} ]; then
-      IPV6=false
-      echo "Using default ipv6: ${IPV6}"
-    else
-      echo "Using predefined ipv6: ${IPV6}"
-    fi
+    PSK=${PSK:-$(tr -dc A-Za-z0-9 </dev/urandom | head -c 31)}
+    PORT=${PORT:-6180}
+    IPV6=${IPV6:-false}
+
+    echo "Using PSK: ${PSK}"
+    echo "Using port: ${PORT}"
+    echo "Using ipv6: ${IPV6}"
+
     echo "Generating new config..."
-    mkdir /etc/snell/
-    echo "[snell-server]" >> ${CONF}
-    echo "listen = 0.0.0.0:${PORT}" >> ${CONF}
-    echo "psk = ${PSK}" >> ${CONF}
-    echo "ipv6 = ${IPV6}" >> ${CONF}
+    cat << EOF > ${CONF}
+[snell-server]
+listen = 0.0.0.0:${PORT}
+psk = ${PSK}
+ipv6 = ${IPV6}
+EOF
   fi
   echo -e "Starting snell-server...\n"
   echo "Config:"
