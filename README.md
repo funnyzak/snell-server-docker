@@ -1,6 +1,6 @@
 # Snell Server
 
-[![Build Status](https://github.com/funnyzak/snell-server-docker/actions/workflows/docker_build.yml/badge.svg)](https://github.com/funnyzak/react-native-v2ex/actions)
+[![Build Status](https://github.com/funnyzak/snell-server-docker/actions/workflows/docker_build.yml/badge.svg)](https://github.com/funnyzak/snell-server-docker/actions)
 [![Image Size](https://img.shields.io/docker/image-size/funnyzak/snell-server)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
