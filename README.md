@@ -31,6 +31,7 @@ docker run -d --name snell-server --restart always \
   -e PSK="5G0H4qdf32mEZx32t" \
   -e TZ="Asia/Shanghai" \
   -e IPV6="false" \
+  -e PORT=6180 \
   -p 12303:6180 funnyzak/snell-server:latest
 
 # Echo config file
@@ -49,6 +50,7 @@ services:
       PSK: 5G0H4qdf32mEZx32t
       TZ: Asia/Shanghai
       IPV6: false
+      PORT: 6180
     restart: always
     ports:
       - 12303:6180
