@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 
 BIN="/app/snell-server"
 CONF="/app/snell-server.conf"

@@ -1,54 +1,54 @@
-# Snell Server Docker
+# Snell Server
 
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
-
-This image is based on Alpine Linux image, and contains Snell Server.
-
-Download size of this image is only:
-
 [![Image Size](https://img.shields.io/docker/image-size/funnyzak/snell-server)](https://hub.docker.com/r/funnyzak/snell-server/)
 
-[Docker hub image: funnyzak/snell-server](https://hub.docker.com/r/funnyzak/snell-server)
+ This image is built for [Snell Server](https://manual.nssurge.com/others/snell.html), which is a lean encrypted proxy protocol. If you want to use **Snell Client**, please download from [NSSurge](https://nssurge.com/).
 
-Docker Pull Command: `docker pull funnyzak/snell-server`
+This Image supports the following architectures:
 
----
+- `linux/amd64`
+- `linux/arm64`
+- `linux/arm/v7`
 
-## Display Conf
+Pull Command: `docker pull funnyzak/snell-server:latest`
 
-```sh
-docker exec snell-server cat /etc/snell/snell-server.conf
-```
+Note: The default port is 6180, which is different from the previous version.
 
----
+> The latest surge-server version is v4, which is not compatible with the previous versions like before. Please upgrade both the client (Surge iOS & Surge Mac) and the server binary.
 
-## Usage Example
+## Docker Run
 
-Here is an example configuration of Docker and Docker Compse.
+Your can run this image with the following command:
 
-### Docker Run
+```bash
+# One line command
+docker run -d --name snell-server --restart always -p 1002:6180 -e PSK="5G0H4qdf32mEZx32t" funnyzak/snell-server
 
-```Docker
+# Or with environment variables
 docker run -d --name snell-server --restart always \
--p 1002:6180 -e PSK="5G0H4qdf32mEZx32t" funnyzak/snell-server
+  -e PSK="5G0H4qdf32mEZx32t" \
+  -e TZ="Asia/Shanghai" \
+  -e IPV6="false" \
+  -p 1002:6180 funnyzak/snell-server:latest
+
+# Echo config file
+docker exec -it snell-server cat /app/snell-server.conf
 ```
 
-### Compose
+Or you can use docker-compose to run this image:
 
-```compose
+```yaml
 version: '3'
 services:
   server:
     image: funnyzak/snell-server
     container_name: snell-server
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "1g"
     environment:
       PSK: 5G0H4qdf32mEZx32t
-    tty: true
+      TZ: Asia/Shanghai
+      IPV6: false
     restart: always
     ports:
       - 1002:6180
@@ -56,7 +56,7 @@ services:
       - ./conf:/etc/snell
 ```
 
-## Related Link
+## Reference
 
 - [Snell Server](https://manual.nssurge.com/others/snell.html)
 

@@ -1,8 +1,12 @@
-FROM --platform=$BUILDPLATFORM alpine:3.19.0
+FROM --platform=$BUILDPLATFORM debian:sid-slim
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 ARG SNELL_SERVER_VERSION=4.0.1
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends wget unzip && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app/
 
@@ -21,9 +25,10 @@ RUN if [ -f snell.zip ]; then unzip snell.zip && rm -f snell.zip; fi && \
 
 ENV LANG=C.UTF-8
 ENV TZ=Asia/Shanghai
-ENV SNELL_SERVER_VERSION=${SNELL_SERVER_VERSION}
 ENV PORT=6180
 ENV IPV6=false
 ENV PSK=
+
+LABEL version="${SNELL_SERVER_VERSION}"
 
 ENTRYPOINT ["/app/entrypoint.sh"]
