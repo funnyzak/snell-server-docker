@@ -8,7 +8,7 @@
 
 This image is built for [snell server](https://manual.nssurge.com/others/snell.html), which is a lean encrypted proxy protocol. If you want to use **Snell Client**, please download from [NSSurge](https://nssurge.com/).
 
-This image supports `linux/amd64`, `linux/arm64`, `linux/arm/v7` and `linux/386` architecture. The latest version is `v4.1.0`.
+This image supports `linux/amd64`, `linux/arm64`, `linux/arm/v7` and `linux/386` architecture. The latest version is `v4.1.1`.
 
 > The latest surge-server version is v4, which is not compatible with the previous versions like before. Please upgrade both the client (Surge iOS & Surge Mac) and the server binary.
 
