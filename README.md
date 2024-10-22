@@ -16,6 +16,10 @@ This image supports `linux/amd64`, `linux/arm64`, `linux/arm/v7` and `linux/386`
 
 `docker pull funnyzak/snell-server:latest`
 
+Or chinese mirror:
+
+`docker pull registry.cn-beijing.aliyuncs.com/funnyzak/snell-server:latest`
+
 ## Docker Run
 
 Your can run this image with the following command:
