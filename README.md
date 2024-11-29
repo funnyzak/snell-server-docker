@@ -1,6 +1,7 @@
 # Snell Server
 
-[![Build Status](https://github.com/funnyzak/snell-server-docker/actions/workflows/docker_build.yml/badge.svg)](https://github.com/funnyzak/snell-server-docker/actions)
+> This repository is no longer maintained. The latest built images can be found in the [Docker Release](https://github.com/funnyzak/docker-release?tab=readme-ov-file#snell-server). You can [create a new issue](https://github.com/funnyzak/docker-release/issues) on the repository if you have any questions.
+
 [![Image Size](https://img.shields.io/docker/image-size/funnyzak/snell-server)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
@@ -14,11 +15,13 @@ This image supports `linux/amd64`, `linux/arm64`, `linux/arm/v7` and `linux/386`
 
 ## Docker Pull
 
-`docker pull funnyzak/snell-server:latest`
-
-Or chinese mirror:
-
-`docker pull registry.cn-beijing.aliyuncs.com/funnyzak/snell-server:latest`
+```bash
+docker pull funnyzak/snell-server
+# GHCR
+docker pull ghcr.io/funnyzak/snell-server
+# Aliyun
+docker pull registry.cn-beijing.aliyuncs.com/funnyzak/snell-server
+```
 
 ## Docker Run
 
@@ -37,7 +40,7 @@ docker run -d --name snell-server --restart always \
   -p 12303:6180 funnyzak/snell-server:latest
 
 # Echo config file
-docker exec -it snell-server cat /app/snell-server.conf
+docker exec -it snell-server cat /etc/snell-server.conf
 ```
 
 Or you can use docker-compose to run this image:
