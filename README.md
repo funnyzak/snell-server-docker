@@ -7,7 +7,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/snell-server.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 [![Docker Tags](https://img.shields.io/docker/v/funnyzak/snell-server?sort=semver&style=flat-square)](https://hub.docker.com/r/funnyzak/snell-server/)
 
-This image is built for [snell server](https://manual.nssurge.com/others/snell.html), which is a lean encrypted proxy protocol. If you want to use **Snell Client**, please download from [NSSurge](https://nssurge.com/).
+This image is built for [snell server](https://kb.nssurge.com/surge-knowledge-base/zh/release-notes/snell), which is a lean encrypted proxy protocol. If you want to use **Snell Client**, please download from [NSSurge](https://nssurge.com/).
 
 This image supports `linux/amd64`, `linux/arm64`, `linux/arm/v7` and `linux/386` architecture. The latest version is `v5.0.0`.
 
