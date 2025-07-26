@@ -63,6 +63,60 @@ services:
       - 12303:6180
 ```
 
+Or you can use kubernetes to run this image:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dept-snell-server
+  labels:
+    app: snell-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snell-server
+  template:
+    metadata:
+      labels:
+        app: snell-server
+    spec:
+      containers:
+        - name: snell-server
+          image: funnyzak/snell-server:4.1.1
+          ports:
+            - containerPort: 6180
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          env:
+            - name: PSK
+              value: "5G0H4qdf32mEZx32t"
+            - name: TZ
+              value: "Asia/Shanghai"
+            - name: IPV6
+              value: "false"
+            - name: PORT
+              value: "6180"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-snell-server
+spec:
+  selector:
+    app: snell-server
+  ports:
+    - protocol: TCP
+      port: 6180
+      targetPort: 6180
+  type: LoadBalancer
+```
 
 ## Environment Variables
 
@@ -72,6 +126,10 @@ services:
 | `PORT` | `6180` | Port number for the server to listen on |
 | `IPV6` | `false` | Enable IPv6 support |
 | `EGRESS_INTERFACE` | - | Network interface name for outbound connections (e.g., `eth0`, `wlan0`) |
+| `REUSE` | - | Optional. Enable connection reuse. |
+| `OBFS` | - |  Optional. `http` is the only option supported by Snell V4. |
+| `OBFSHOST` | - | Optional. |
+| `OBFSURI` | - | Optional. |
 
 ## Surge Configuration
 
