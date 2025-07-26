@@ -19,6 +19,10 @@ run() {
 listen = 0.0.0.0:${PORT}
 psk = ${PSK}
 ipv6 = ${IPV6}
+${OBFS:+obfs = ${OBFS}}
+${REUSE:+reuse = ${REUSE}}
+${OBFSHOST:+obfs-host = ${OBFSHOST}}
+${OBFSURI:+obfs-uri = ${OBFSURI}}
 EOF
   fi
   echo -e "Starting snell-server...\n"

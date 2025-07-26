@@ -2,7 +2,7 @@ FROM --platform=$BUILDPLATFORM debian:sid-slim
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
-ARG SNELL_SERVER_VERSION=4.0.1
+ARG SNELL_SERVER_VERSION=4.1.1
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends wget unzip && \
@@ -29,6 +29,10 @@ ENV TZ=Asia/Shanghai
 ENV PORT=6180
 ENV IPV6=false
 ENV PSK=
+ENV REUSE=
+ENV OBFS=
+ENV OBFSHOST=
+ENV OBFSURI=
 
 LABEL version="${SNELL_SERVER_VERSION}"
 
