@@ -1,35 +1,50 @@
-FROM --platform=$BUILDPLATFORM debian:sid-slim
+FROM --platform=$BUILDPLATFORM alpine AS builder
 
+ARG VERSION=5.0.0
 ARG TARGETPLATFORM
-ARG BUILDPLATFORM
-ARG SNELL_SERVER_VERSION=4.0.1
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends wget unzip && \
-    rm -rf /var/lib/apt/lists/*
+WORKDIR /opt/snell-server
 
-WORKDIR /app/
+RUN apk add --no-cache wget unzip && \
+    case "${TARGETPLATFORM}" in \
+        "linux/amd64") ARCH="amd64" ;; \
+        "linux/arm64") ARCH="aarch64" ;; \
+        "linux/arm/v7") ARCH="armv7l" ;; \
+        "linux/386") ARCH="i386" ;; \
+        *) echo "unsupported platform: ${TARGETPLATFORM}"; exit 1 ;; \
+    esac && \
+    wget --no-check-certificate -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${VERSION}-linux-${ARCH}.zip" && \
+    unzip snell.zip
 
-RUN case "${TARGETPLATFORM}" in \
-    "linux/amd64") wget --no-check-certificate -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${SNELL_SERVER_VERSION}-linux-amd64.zip" ;; \
-    "linux/arm64") wget --no-check-certificate -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${SNELL_SERVER_VERSION}-linux-aarch64.zip" ;; \
-    "linux/arm/v7") wget --no-check-certificate -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${SNELL_SERVER_VERSION}-linux-armv7l.zip" ;; \
-    "linux/386") wget --no-check-certificate -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${SNELL_SERVER_VERSION}-linux-i386.zip" ;; \
-    *) echo "unsupported platform: ${TARGETPLATFORM}"; exit 1 ;; \
-    esac
+FROM debian:stable-slim
 
-COPY entrypoint.sh /app/
+ARG BUILD_DATE
+ARG VERSION=5.0.0b1
+ARG VCS_REF
 
-RUN if [ -f snell.zip ]; then unzip snell.zip && rm -f snell.zip; fi && \
-    chmod +x snell-server && \
-    chmod +x entrypoint.sh
+LABEL org.label-schema.name="snell-server" \
+      org.label-schema.description="snell server is a lean encrypted proxy protocol." \
+      org.label-schema.version="${VERSION}" \
+      org.label-schema.vcs-ref="${VCS_REF}" \
+      org.label-schema.build-date="${BUILD_DATE}" \
+      org.label-schema.vendor="Leon<silenceace@gmail.com>" \
+      org.label-schema.url="https://github.com/funnyzak/docker-release"
 
-ENV LANG=C.UTF-8
-ENV TZ=Asia/Shanghai
-ENV PORT=6180
-ENV IPV6=false
-ENV PSK=
+WORKDIR /opt/snell-server
 
-LABEL version="${SNELL_SERVER_VERSION}"
+COPY --from=builder /opt/snell-server/snell-server .
+COPY entrypoint.sh .
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+RUN chmod +x snell-server entrypoint.sh
+
+ENV LANG=C.UTF-8 \
+    VERSION=${VERSION} \
+    TZ=Asia/Shanghai \
+    PORT=6180 \
+    IPV6=false \
+    PSK= \
+    EGRESS_INTERFACE=
+
+EXPOSE ${PORT}/tcp
+
+ENTRYPOINT ["/opt/snell-server/entrypoint.sh"]
