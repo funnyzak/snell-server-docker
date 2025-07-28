@@ -9,8 +9,6 @@ Snell Server is a lean encrypted proxy protocol. It is designed to be simple, li
 
 This image is build from the latest source code of [Snell Server](https://kb.nssurge.com/surge-knowledge-base/zh/release-notes/snell). It supports `linux/amd64`, `linux/arm64`, `linux/arm/v7`, `linux/386` architecture.
 
-> **Notice**: Need to use with Surge iOS or Surge Mac, both of them support Snell protocol. The latest surge-server version is v5.0.0, which is not compatible with the previous versions like before. Please upgrade both the client (Surge iOS & Surge Mac) and the server binary.
-
 ## Docker Pull
 
 ```bash
