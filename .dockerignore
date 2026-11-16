@@ -1,0 +1,6 @@
+.git
+.env
+.env.*
+snell-server.conf
+*.log
+temp_files/

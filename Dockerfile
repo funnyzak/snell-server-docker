@@ -5,7 +5,7 @@ ARG TARGETPLATFORM
 
 WORKDIR /opt/snell-server
 
-RUN apk add --no-cache wget unzip && \
+RUN apk add --no-cache ca-certificates wget unzip && \
     case "${TARGETPLATFORM}" in \
         "linux/amd64") ARCH="amd64" ;; \
         "linux/arm64") ARCH="aarch64" ;; \
@@ -13,7 +13,10 @@ RUN apk add --no-cache wget unzip && \
         "linux/386") ARCH="i386" ;; \
         *) echo "unsupported platform: ${TARGETPLATFORM}"; exit 1 ;; \
     esac && \
-    wget --no-check-certificate -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${VERSION}-linux-${ARCH}.zip" && \
+    case "${VERSION}:${TARGETPLATFORM}" in \
+        6.*:linux/arm/v7) echo "Snell 6.x has no upstream ARMv7 binary" >&2; exit 1 ;; \
+    esac && \
+    wget -O snell.zip "https://dl.nssurge.com/snell/snell-server-v${VERSION}-linux-${ARCH}.zip" && \
     unzip snell.zip
 
 FROM debian:stable-slim
@@ -28,14 +31,17 @@ LABEL org.label-schema.name="snell-server" \
       org.label-schema.vcs-ref="${VCS_REF}" \
       org.label-schema.build-date="${BUILD_DATE}" \
       org.label-schema.vendor="Leon<silenceace@gmail.com>" \
-      org.label-schema.url="https://github.com/funnyzak/docker-release"
+      org.label-schema.url="https://github.com/funnyzak/snell-server-docker"
 
 WORKDIR /opt/snell-server
 
 COPY --from=builder /opt/snell-server/snell-server .
 COPY entrypoint.sh .
 
-RUN chmod +x snell-server entrypoint.sh
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends tini && \
+    rm -rf /var/lib/apt/lists/* && \
+    chmod +x snell-server entrypoint.sh
 
 ENV LANG=C.UTF-8 \
     VERSION=${VERSION} \
@@ -47,4 +53,4 @@ ENV LANG=C.UTF-8 \
 
 EXPOSE ${PORT}/tcp
 
-ENTRYPOINT ["/opt/snell-server/entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/opt/snell-server/entrypoint.sh"]
